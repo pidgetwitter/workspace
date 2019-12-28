@@ -1,0 +1,49 @@
+/* Thanks to Chris Coyier at https://css-tricks.com/perfect-full-page-background-image/ for full-page background image css */
+body {
+  background: url(cook-366875.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Thanks to ackushiw at https://stackoverflow.com/questions/14876035/background-size-cover-not-working-in-portrait-on-android-tablet */
+/* for the solution of getting vertical cover fixed for Android */
+html{
+  min-height:100%;
+}
+
+main {
+  color: white;
+}
+
+@media (max-width:600px) {
+  h1 {
+    font-size: 1.5em;
+  }
+}
+
+/* Thanks to https://alligator.io/css/centering-using-flexbox/ for vertical image alignment */
+.apology-container {
+  font-size:1.5em;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.apology-text {
+  text-align: center;
+}
+
+.headdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#home {
+  height: 6vh;
+  }
+
+#refresh {
+  height: 6vh;
+  margin-right: 10px;
+}

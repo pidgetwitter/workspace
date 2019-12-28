@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Takeout Lotto
+{% endblock %}
+
+{% block main %}
+
+    <!--Thanks to Steven Moseley at https://stackoverflow.com/questions/13476006/javascript-location-reload-is-losing-post-data -->
+    <!--for the idea of using a hidden form to store data from previous page and using JS to submit-->
+
+    <div style="text-align:right"><a href="javascript:document.hiddenform.submit();"><img src="static/refresh.png" alt="refresh" id="refresh"></a>
+    <a href="/"><img src="static/home.png" alt="home" id="home"></a></div>
+
+    <div class=headdiv>
+        <div>
+            <h2><a href={{ bizurl }}>{{ bizname }}</a></h2>
+            <p>{{ bizaddress }}<br>
+            Distance: {{ bizdistance }} miles<br>
+            Price: {{ bizprice }}</p>
+            <p><a href={{ bizurl }}><img src="static/yelp_icon.png" style="height:1em" alt="Yelp"></a> Powered by Yelp</p>
+        </div>
+    </div>
+
+    <form style="display:none" action="/" method="post" name="hiddenform" id="hiddenform">
+        <div class="form-group">
+            <input name="address" type="text" value="{{ address }}"><br>
+            <input name="distance" type="text" value="{{ distance }}"><br>
+            <input type="checkbox" id="$" name="$" value="{{ price1 }}">
+            <input type="checkbox" id="$$" name="$$" value="{{ price2 }}">
+            <input type="checkbox" id="$$$" name="$$$" value="{{ price3 }}">
+            <input type="checkbox" id="$$$$" name="$$$$" value="{{ price4 }}">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Thanks to Davide_Zanotti and 7stud at https://www.sitepoint.com/community/t/getelementsbytype/2553/2 //
+        // for instructions on how to grab and iterate over form elements by type //
+        var inputs = document.getElementsByTagName('input');
+        for(var i=0; i<inputs.length; i++){
+            if(inputs[i].type=='checkbox'){
+                if(inputs[i].value){
+                    inputs[i].checked = true;
+                }
+            }
+        }
+    </script>
+
+{% endblock %}

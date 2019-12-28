@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block main %}
+    <div style="text-align:right"><a href="/"><img src="static/home.png" alt="home" id="home"></a></div>
+    <div class="apology-container">
+        <div class="apology-text">{{ message }}</div>
+    </div>
+{% endblock %}

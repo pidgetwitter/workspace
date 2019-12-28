@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Takeout Lotto
+{% endblock %}
+
+{% block main %}
+    <h1>Where should I eat?</h1><br>
+    <form action="/" method="post" id="form">
+        <div class="form-group">
+            <input class=form-control autofocus name="address" placeholder="My address (zip only or full address)" type="text"><br>
+            <input class=form-control name="distance" placeholder="Miles willing to travel" type="text"><br>
+            <input type="checkbox" id="$" name="$" value="$" style="display:none">
+            <input type="checkbox" id="$$" name="$$" value="$$" style="display:none">
+            <input type="checkbox" id="$$$" name="$$$" value="$$$" style="display:none">
+            <input type="checkbox" id="$$$$" name="$$$$" value="$$$$" style="display:none">
+            <input class="btn btn-light" type="button" name="$" value="$" onclick="toggle(this)">
+            <input class="btn btn-light" type="button" name="$$" value="$$" onclick="toggle(this)">
+            <input class="btn btn-light" type="button" name="$$$" value="$$$" onclick="toggle(this)">
+            <input class="btn btn-light" type="button" name="$$$$" value="$$$$" onclick="toggle(this)">
+        </div>
+        <button class="btn btn-primary" type="submit" name="submit" value="submit">Submit</button>
+    </form>
+
+    <script>
+        // Thanks to Peter Boughton at https://stackoverflow.com/questions/195951/how-to-change-an-elements-class-with-javascript //
+        // for the idea of using .className //
+        function toggle(element) {
+            if(element.className == "btn btn-light") {
+                element.className = "btn btn-primary";
+                document.getElementById(element.name).checked = true;
+            }
+            else {
+                element.className = "btn btn-light";
+                document.getElementById(element.name).checked = false;
+            }
+        }
+
+        document.querySelector('form').onsubmit = function() {
+
+            if(!document.getElementsByName("address")[0].value) {
+                alert("Oops! Looks like you haven't finished yet.");
+                return false;
+            }
+            else if (isNaN(document.getElementsByName("distance")[0].value)) {
+                alert ("Travel radius must be a number greater than 0 and less than 24.");
+                return false;
+            }
+            else if(!parseFloat(document.getElementsByName("distance")[0].value)) {
+                alert("Travel radius must be greater than 0 and less than 24.");
+                return false;
+            }
+            else if(parseFloat(document.getElementsByName("distance")[0].value)<=0 || parseFloat(document.getElementsByName("distance")[0].value)>=24) {
+                alert("Travel radius must be greater than 0 and less than 24.");
+                return false;
+            }
+        };
+
+    </script>
+{% endblock %}
